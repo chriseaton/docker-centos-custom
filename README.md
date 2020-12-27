@@ -1,6 +1,8 @@
 # CentOS Slim
 A custom slim docker image based on CentOS. Built from the base packages. This includes the base system and file system
-support, but minimal tooling.
+support, but minimal tooling. 
+
+Currently as of the latest compiled release (CentOS v`8.3`), the image size is 266MB.
 
 ## Notable Differences
 This image has a few differences from the base installation from CentOS. These may or may not appeal to you so be sure
