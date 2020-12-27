@@ -84,6 +84,6 @@ tar -C $CENTOS_ROOT -c . | docker import - $DOCKER_REPOSITORY:slim \
     -c "ENV IMAGE_VERSION=$IMAGE_VERSION" \
     -c "ENV IMAGE_OS_VERSION=$CENTOS_VERSION" \
     -c "ENV IMAGE_OS_DISTRO=CentOS" \
-    -c "CMD [\"/bin/bash\", \"/root/entrypoint.sh\"]"
+    -c "CMD [\"/bin/sh\", \"/root/entrypoint.sh\"]"
 docker tag $(docker images --filter=reference=$DOCKER_REPOSITORY:slim --format "{{.ID}}") $DOCKER_REPOSITORY:$CENTOS_BASE_VERSION-slim
 echo "Build complete."
