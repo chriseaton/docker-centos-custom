@@ -41,12 +41,14 @@ else
     fi
     rpm --nodeps --root $CENTOS_ROOT -ivh centos-*.rpm
     rm centos-*.rpm
-    dnf -y --installroot=$CENTOS_ROOT --nodocs install basesystem filesystem nano
+    dnf -y --installroot=$CENTOS_ROOT --nodocs install basesystem filesystem
 fi
 
 # configuration
 printf "[main]\ntsflags=nodocs" >> $CENTOS_ROOT/etc/dnf/dnf.conf
 tee -a $CENTOS_ROOT/etc/resolv.conf <<EOF
+nameserver 1.1.1.1
+nameserver 1.0.0.1
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF
@@ -83,5 +85,5 @@ tar -C $CENTOS_ROOT -c . | docker import - $DOCKER_REPOSITORY:slim \
     -c "ENV IMAGE_OS_VERSION=$CENTOS_VERSION" \
     -c "ENV IMAGE_OS_DISTRO=CentOS" \
     -c "CMD [\"/bin/bash\", \"/root/entrypoint.sh\"]"
-docker tag $(docker images --filter=reference=$DOCKER_REPOSITORY:slim --format "{{.ID}}") $DOCKER_REPOSITORY:$CENTOS_VERSION-slim
+docker tag $(docker images --filter=reference=$DOCKER_REPOSITORY:slim --format "{{.ID}}") $DOCKER_REPOSITORY:$CENTOS_BASE_VERSION-slim
 echo "Build complete."
