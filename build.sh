@@ -41,7 +41,7 @@ else
     fi
     rpm --nodeps --root $CENTOS_ROOT -ivh centos-*.rpm
     rm centos-*.rpm
-    dnf -y --installroot=$CENTOS_ROOT --nodocs install basesystem filesystem
+    dnf -y --installroot=$CENTOS_ROOT --nodocs install basesystem filesystem libpcap
 fi
 
 # configuration

@@ -1,8 +1,10 @@
 # CentOS Slim
 A custom slim docker image based on CentOS. Built from the base packages. This includes the base system and file system
-support, but essentially no tooling. 
+support, but essentially no tooling, including _no_ package manager. 
 
-Currently as of the latest compiled release (CentOS v`8.3`), the image size is 257MB.
+Currently as of the latest compiled release (CentOS v`8.3`), the image size is `76MB` (`257MB` uncompressed).
+
+If you need _any_ tooling consider using the [chriseaton/centos](https://hub.docker.com/r/chriseaton/centos):`latest` image. 
 
 ## Notable Differences
 This image has a few differences from the base installation from CentOS. These may or may not appeal to you so be sure
@@ -34,6 +36,8 @@ CENTOS_ROOT=image/rootfs
 ```
 You can find repository packages on the http://mirror.centos.org/centos/ website. Packages are found under the
 `BaseOS/x86_64/os/Packages/` path.
+
+Please note, this build process relies on the presence of `dnf` on your system, so _you must be running_ CentOS, RHEL, or a variant (untested).
 
 ## Building
 Simply run the build script and the image will be created. 
